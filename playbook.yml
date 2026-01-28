@@ -1,0 +1,19 @@
+---
+- name: nginx
+  hosts: defaults
+  become: yes
+
+  tasks:
+    - name: dl nginx
+      apt:
+         update_cache: yes
+    - name: Install Nginx
+      apt:
+         name: nginx
+         state: present
+    - name: Make sure nginx is running
+      service:
+          name: nginx
+          state: started
+          enabled: yes
+
